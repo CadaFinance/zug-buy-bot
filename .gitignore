@@ -54,10 +54,8 @@ Thumbs.db
 logs/
 
 # Data files
-total_amount.json
 
 # Media files
-*.mp4
 *.gif
 *.jpg
 *.jpeg
