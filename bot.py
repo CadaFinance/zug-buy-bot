@@ -127,9 +127,14 @@ class PresaleBot:
         self.http_server = runner
         
         await runner.setup()
-        site = web.TCPSite(runner, 'localhost', 5000)
+        
+        # Railway'de PORT environment variable'ını kullan
+        port = int(os.environ.get('PORT', 5000))
+        host = '0.0.0.0'  # Railway için 0.0.0.0 kullan
+        
+        site = web.TCPSite(runner, host, port)
         await site.start()
-        logger.info("🌐 HTTP Server başlatıldı: http://localhost:5000")
+        logger.info(f"🌐 HTTP Server başlatıldı: http://{host}:{port}")
         logger.info("📊 Endpoints:")
         logger.info("   - GET /api/total     - Toplam miktar")
         logger.info("   - GET /api/status   - Bot durumu")
